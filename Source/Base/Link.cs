@@ -4,8 +4,8 @@ namespace BetterPawnControl
 {
     public class Link
     {
-        internal int zone = 0;
-        internal int mapId = 0;
+        public int zone = 0;
+        public int mapId = 0;
 
         public Link() { }
 

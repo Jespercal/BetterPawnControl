@@ -9,13 +9,13 @@ using static BetterPawnControl.BetterPawnControlMod;
 namespace BetterPawnControl
 {
     [StaticConstructorOnStartup]
-    class AssignManager : Manager<AssignLink>
+    public class AssignManager : Manager<AssignLink>
     {
-        internal static List<AssignLink> clipboard = new List<AssignLink>();
+        public static List<AssignLink> clipboard = new List<AssignLink>();
 
 
-        internal static ApparelPolicy _defaultOutfit = null;
-        internal static ApparelPolicy DefaultOutfit
+        public static ApparelPolicy _defaultOutfit = null;
+        public static ApparelPolicy DefaultOutfit
         {
             get
             {
@@ -33,8 +33,8 @@ namespace BetterPawnControl
             }
         }
 
-        internal static DrugPolicy _defaultDrugPolicy = null;
-        internal static DrugPolicy DefaultDrugPolicy
+        public static DrugPolicy _defaultDrugPolicy = null;
+        public static DrugPolicy DefaultDrugPolicy
         {
             get
             {
@@ -52,8 +52,8 @@ namespace BetterPawnControl
         }
 
 
-        internal static FoodPolicy _defaultPrisonerFoodPolicy = null;
-        internal static FoodPolicy DefaultPrisonerFoodPolicy
+        public static FoodPolicy _defaultPrisonerFoodPolicy = null;
+        public static FoodPolicy DefaultPrisonerFoodPolicy
         {
             get
             {
@@ -70,7 +70,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static MedicalCareCategory DefaultPrisonerMedicinePolicy
+        public static MedicalCareCategory DefaultPrisonerMedicinePolicy
         {
             get
             {
@@ -83,7 +83,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static MedicalCareCategory DefaultSlaveMedicinePolicy
+        public static MedicalCareCategory DefaultSlaveMedicinePolicy
         {
             get
             {
@@ -96,8 +96,8 @@ namespace BetterPawnControl
             }
         }
 
-        internal static ApparelPolicy _defaultSlaveOutfit = null;
-        internal static ApparelPolicy DefaultSlaveOutfit
+        public static ApparelPolicy _defaultSlaveOutfit = null;
+        public static ApparelPolicy DefaultSlaveOutfit
         {
             get
             {
@@ -115,8 +115,8 @@ namespace BetterPawnControl
             }
         }
 
-        internal static FoodPolicy _defaultSlaveFoodPolicy = null;
-        internal static FoodPolicy DefaultSlaveFoodPolicy
+        public static FoodPolicy _defaultSlaveFoodPolicy = null;
+        public static FoodPolicy DefaultSlaveFoodPolicy
         {
             get
             {
@@ -133,8 +133,8 @@ namespace BetterPawnControl
             }
         }
 
-        internal static DrugPolicy _defaultSlaveDrugPolicy = null;
-        internal static DrugPolicy DefaultSlaveDrugPolicy
+        public static DrugPolicy _defaultSlaveDrugPolicy = null;
+        public static DrugPolicy DefaultSlaveDrugPolicy
         {
             get
             {
@@ -151,8 +151,8 @@ namespace BetterPawnControl
             }
         }
 
-        internal static ReadingPolicy _defaultSlaveReadingPolicy = null;
-        internal static ReadingPolicy DefaultSlaveReadingPolicy
+        public static ReadingPolicy _defaultSlaveReadingPolicy = null;
+        public static ReadingPolicy DefaultSlaveReadingPolicy
         {
             get
             {
@@ -169,7 +169,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void DeletePolicy(Policy policy)
+        public static void DeletePolicy(Policy policy)
         {
             //delete if not default AssignPolicy
             if (policy != null && policy.id > 0)
@@ -188,17 +188,17 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void DeleteLinksInMap(int mapId)
+        public static void DeleteLinksInMap(int mapId)
         {
             links.RemoveAll(x => x.mapId == mapId);
         }
 
-        internal static void DeleteMap(MapActivePolicy map)
+        public static void DeleteMap(MapActivePolicy map)
         {
             activePolicies.Remove(map);
         }
 
-        internal static void SaveCurrentState(List<Pawn> pawns)
+        public static void SaveCurrentState(List<Pawn> pawns)
         {
             int currentMap = Find.CurrentMap.uniqueID;
             //Save current state
@@ -298,12 +298,12 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void CleanDeadColonists(Pawn pawn)
+        public static void CleanDeadColonists(Pawn pawn)
         {
             AssignManager.links.RemoveAll(x => x.colonist == pawn);
         }
 
-        internal static void LinksCleanUp()
+        public static void LinksCleanUp()
         {
             for (int i = AssignManager.links.Count - 1; i >= 0; i--)
             {
@@ -314,7 +314,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static bool ActivePoliciesContainsValidMap()
+        public static bool ActivePoliciesContainsValidMap()
         {
             bool containsValidMap = false;
             foreach (Map map in Find.Maps)
@@ -328,7 +328,7 @@ namespace BetterPawnControl
             return containsValidMap;
         }
 
-        internal static void CleanRemovedMaps(Map map)
+        public static void CleanRemovedMaps(Map map)
         {
             //for (int i = 0; i < AssignManager.activePolicies.Count; i++)
             //{
@@ -364,7 +364,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void ProcessNewMap(Map newMap)
+        public static void ProcessNewMap(Map newMap)
         {
             if (Find.Maps.Count > 1)
             {
@@ -388,7 +388,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void UpdateState(List<AssignLink> links, List<Pawn> pawns, Policy policy)
+        public static void UpdateState(List<AssignLink> links, List<Pawn> pawns, Policy policy)
         {
             List<AssignLink> mapLinks = null;
             List<AssignLink> zoneLinks = null;
@@ -420,7 +420,7 @@ namespace BetterPawnControl
             AssignManager.SetActivePolicy(policy);
         }
 
-        internal static void LoadState(List<AssignLink> links, List<Pawn> pawns, Policy policy)
+        public static void LoadState(List<AssignLink> links, List<Pawn> pawns, Policy policy)
         {
             List<AssignLink> mapLinks = null;
             List<AssignLink> zoneLinks = null;
@@ -469,13 +469,13 @@ namespace BetterPawnControl
             AssignManager.SetActivePolicy(policy);
         }
 
-        internal static void LoadState(Policy policy)
+        public static void LoadState(Policy policy)
         {
             List<Pawn> pawns = Find.CurrentMap.mapPawns.FreeColonists.ToList();
             LoadState(AssignManager.links, pawns, policy);
         }
 
-        internal static bool OutfitExits(ApparelPolicy outfit)
+        public static bool OutfitExits(ApparelPolicy outfit)
         {
             foreach (ApparelPolicy current in Current.Game.outfitDatabase.AllOutfits)
             {
@@ -487,7 +487,7 @@ namespace BetterPawnControl
             return false;
         }
 
-        internal static bool DrugPolicyExits(DrugPolicy drugPolicy)
+        public static bool DrugPolicyExits(DrugPolicy drugPolicy)
         {
             foreach (DrugPolicy drug in Current.Game.drugPolicyDatabase.AllPolicies)
             {
@@ -499,7 +499,7 @@ namespace BetterPawnControl
             return false;
         }
 
-        internal static bool ReadingPolicyExits(ReadingPolicy readingPolicy)
+        public static bool ReadingPolicyExits(ReadingPolicy readingPolicy)
         {
             foreach (ReadingPolicy reading in Current.Game.readingPolicyDatabase.AllReadingPolicies)
             {
@@ -511,8 +511,7 @@ namespace BetterPawnControl
             return false;
         }
 
-
-        internal static void CopyToClipboard()
+        public static void CopyToClipboard()
         {
             //Save state in case user has made changes to the active policy
             AssignManager.SaveCurrentState(AssignManager.Colonists().ToList());
@@ -533,7 +532,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void PasteToActivePolicy()
+        public static void PasteToActivePolicy()
         {
             Policy policy = GetActivePolicy();
             if (!AssignManager.clipboard.NullOrEmpty() && AssignManager.clipboard[0].zone != policy.id)
@@ -548,7 +547,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void SetDefaultsForFreeColonist(Pawn p)
+        public static void SetDefaultsForFreeColonist(Pawn p)
         {
             if (p != null && p.outfits != null && p.foodRestriction != null && p.drugs != null)
             {
@@ -558,7 +557,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void SetDefaultsForPrisoner(Pawn p)
+        public static void SetDefaultsForPrisoner(Pawn p)
         {
             if (p != null && p.foodRestriction != null)
             {
@@ -566,7 +565,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void SetDefaultsForSlave(Pawn p)
+        public static void SetDefaultsForSlave(Pawn p)
         {
             if (p != null && p.outfits != null && p.foodRestriction != null && p.drugs != null)
             {
@@ -576,7 +575,7 @@ namespace BetterPawnControl
             }
         }
 
-        internal static void PrintAllAssignPolicies(string spacer = "\n")
+        public static void PrintAllAssignPolicies(string spacer = "\n")
         {
             Log.Message("[BPC] === List Policies START [" + AssignManager.policies.Count + "] ===");
             foreach (Policy p in AssignManager.policies)

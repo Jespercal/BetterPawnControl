@@ -6,13 +6,13 @@ using Verse;
 
 namespace BetterPawnControl
 {
-    abstract class Manager<T>
+	public abstract class Manager<T>
 	{
-		internal static List<Policy> policies = new List<Policy>();
-		internal static List<MapActivePolicy> activePolicies = new List<MapActivePolicy>();
-		internal static List<T> links = new List<T>();
-		internal static bool showPaste = false;
-        internal static Dictionary<WorkTypeDef, List<WorkGiverDef>> workgivers = new Dictionary<WorkTypeDef, List<WorkGiverDef>>();
+		public static List<Policy> policies = new List<Policy>();
+		public static List<MapActivePolicy> activePolicies = new List<MapActivePolicy>();
+		public static List<T> links = new List<T>();
+		public static bool showPaste = false;
+        public static Dictionary<WorkTypeDef, List<WorkGiverDef>> workgivers = new Dictionary<WorkTypeDef, List<WorkGiverDef>>();
         
 		static Manager()
         {
@@ -21,7 +21,7 @@ namespace BetterPawnControl
             activePolicies.Add(new MapActivePolicy(0, defaultPolicy));
         }
 
-        internal static void ForceInit()
+        public static void ForceInit()
         {
             policies = new List<Policy>();
             activePolicies = new List<MapActivePolicy>();
@@ -31,7 +31,7 @@ namespace BetterPawnControl
             activePolicies.Add(new MapActivePolicy(0, defaultPolicy));
         }
 
-		internal static IEnumerable<Pawn> Colonists()
+		public static IEnumerable<Pawn> Colonists()
 		{
 			try
 			{
@@ -43,7 +43,7 @@ namespace BetterPawnControl
 			}
         }
 
-        internal static List<WorkGiverDef> GetWorkGivers(WorkTypeDef workType)
+        public static List<WorkGiverDef> GetWorkGivers(WorkTypeDef workType)
         {
             if (workgivers.TryGetValue(workType, out var result))
                 return result;
@@ -70,17 +70,17 @@ namespace BetterPawnControl
 			}
 		}
 
-		internal static Policy GetActivePolicy()
+		public static Policy GetActivePolicy()
 		{
 			return GetActivePolicy(Find.CurrentMap.uniqueID);
 		}
 
-		internal static void SetActivePolicy(Policy policy)
+		public static void SetActivePolicy(Policy policy)
 		{
 			SetActivePolicy(Find.CurrentMap.uniqueID, policy);
 		}
 
-		internal static Policy GetActivePolicy(int mapId)
+		public static Policy GetActivePolicy(int mapId)
 		{
 			if (activePolicies == null)
 			{
@@ -97,12 +97,12 @@ namespace BetterPawnControl
 			return mapPolicy.activePolicy;
 		}
 
-		internal static Policy GetPolicy(int selected)
+		public static Policy GetPolicy(int selected)
 		{
 			return policies.Find(x => x.id == selected);
 		}
 
-        internal static MapActivePolicy GetActiveMap(int mapId)
+        public static MapActivePolicy GetActiveMap(int mapId)
         {
             if (activePolicies == null)
             {
@@ -113,7 +113,7 @@ namespace BetterPawnControl
 			return activePolicies.Find(x => x.mapId == mapId);
         }
 
-        internal static void SetActivePolicy(int mapId, Policy policy)
+        public static void SetActivePolicy(int mapId, Policy policy)
 		{
 			MapActivePolicy map = activePolicies.Find(x => x.mapId == mapId);
 			if (map != null)
@@ -126,7 +126,7 @@ namespace BetterPawnControl
 			}
 		}
 
-		internal static void MoveLinksToMap(int srcMapId, int dstMapId)
+		public static void MoveLinksToMap(int srcMapId, int dstMapId)
 		{
 			if (srcMapId == -1)
 			{
@@ -195,7 +195,7 @@ namespace BetterPawnControl
             }
 		}
 
-		internal static bool FoodPolicyExists(FoodPolicy foodPolicy)
+		public static bool FoodPolicyExists(FoodPolicy foodPolicy)
 		{
 			foreach (FoodPolicy food in Current.Game.foodRestrictionDatabase.AllFoodRestrictions)
 			{
@@ -207,8 +207,8 @@ namespace BetterPawnControl
 			return false;
 		}
 
-		internal static FoodPolicy _defaultFoodPolicy = null;
-		internal static FoodPolicy DefaultFoodPolicy
+		public static FoodPolicy _defaultFoodPolicy = null;
+		public static FoodPolicy DefaultFoodPolicy
 		{
 			get
 			{
@@ -225,8 +225,8 @@ namespace BetterPawnControl
 			}
 		}
 
-		internal static ReadingPolicy _defaultReadingPolicy = null;
-		internal static ReadingPolicy DefaultReadingPolicy
+		public static ReadingPolicy _defaultReadingPolicy = null;
+		public static ReadingPolicy DefaultReadingPolicy
 		{
 			get
 			{
@@ -243,7 +243,7 @@ namespace BetterPawnControl
 			}
 		}
 
-        internal static MedicalCareCategory DefaultMedsPolicy
+        public static MedicalCareCategory DefaultMedsPolicy
         {
             get
             {

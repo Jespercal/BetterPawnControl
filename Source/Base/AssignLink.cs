@@ -6,19 +6,19 @@ namespace BetterPawnControl
 {
     public class AssignLink : Link, IExposable
     {
-        //internal int zone = 0;
-        internal Pawn colonist = null;
-        internal ApparelPolicy outfit = null;
-        internal FoodPolicy foodPolicy = null;
-        internal DrugPolicy drugPolicy = null;
-        internal ReadingPolicy readingPolicy = null;
-        internal HostilityResponseMode hostilityResponse = HostilityResponseMode.Flee;
-        internal MedicalCareCategory medicinePolicy = MedicalCareCategory.Best;
-        internal ThingDef carriedMedicineThing = null;
-        internal int carriedMedicineCount = 0;
-        internal int loadoutId = 1;
-        internal int compositableState = -1;
-        //internal int mapId = 0;
+        //public int zone = 0;
+        public Pawn colonist = null;
+        public ApparelPolicy outfit = null;
+        public FoodPolicy foodPolicy = null;
+        public DrugPolicy drugPolicy = null;
+        public ReadingPolicy readingPolicy = null;
+        public HostilityResponseMode hostilityResponse = HostilityResponseMode.Flee;
+        public MedicalCareCategory medicinePolicy = MedicalCareCategory.Best;
+        public ThingDef carriedMedicineThing = null;
+        public int carriedMedicineCount = 0;
+        public int loadoutId = 1;
+        public int compositableState = -1;
+        //public int mapId = 0;
 
         public AssignLink() { }
 

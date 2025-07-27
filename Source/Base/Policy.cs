@@ -4,7 +4,7 @@ namespace BetterPawnControl
 {
     public class Policy : IExposable, IRenameable
     {
-        internal int id = 0;
+        public int id = 0;
         public string label = "BPC.Auto".Translate();
 
         public string RenamableLabel
